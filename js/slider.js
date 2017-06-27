@@ -1,3 +1,4 @@
+// initializes the slider
 function initSlider(sliderElements){
   const { slideFigure, leftButton, rightButton, dashContainer } = sliderElements
   let = firstSlide = document.getElementById('item-0'),
@@ -10,6 +11,7 @@ function initSlider(sliderElements){
         slideDistance = 0,
         windowWidth = window.innerWidth
 
+  // update on window resize
   window.onresize = () => {
     slideFigure.style.transform = 'translateX(0)'
     currentPos = 0
@@ -17,6 +19,7 @@ function initSlider(sliderElements){
     updateSliderAll()
   }
 
+  // updates the distance the slider translates on the X-axis
   function updateSlideDistance(){
     if(windowWidth < 750) slideDistance = 100
     if(windowWidth >= 750) slideDistance = 75
@@ -80,6 +83,7 @@ function initSlider(sliderElements){
     slideFigure.style.transform = 'translateX('+currentPos.toString()+'%)'
   }
 
+  // hides or unhides the buttons depending on slide position
   function updateButtons(){
     if(currentPos === slideDistance){
       leftButton.style.opacity = '0'
@@ -95,6 +99,7 @@ function initSlider(sliderElements){
     }
   }
 
+  // update the dashes used to keep track of and navigate the slider
   function updateDash(){
     if(currentPos === slideDistance){
       firstDash.classList.add('active')
@@ -113,6 +118,7 @@ function initSlider(sliderElements){
     }
   }
 
+  // updates outer slider-items and adds 'outer-item' class to them
   function updateOuterItem(){
     if(currentPos === slideDistance){
       firstSlide.className = ''
@@ -131,6 +137,7 @@ function initSlider(sliderElements){
     }
   }
 
+  // handles dash updating when making "double" jumps on the slider via the dashes.
   function updateOuterDash(pos, newPos, dash){
     if(currentPos === pos){
       dash.classList.remove('active')

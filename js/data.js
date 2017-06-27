@@ -6,6 +6,7 @@ let galleryArr = [],
 
 const API_KEY = '4ca5d32fc4f8ce65c4b6e3fd1089c50c'
 
+// takes an url as an argument and fetches data from that url
 function fetchData(tagURL){
   if(tagURL){
     return fetch(tagURL)

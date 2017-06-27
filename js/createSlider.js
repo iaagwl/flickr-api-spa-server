@@ -1,3 +1,4 @@
+// create a slider and returns its elements
 function createSlider(){
   let slider = document.createElement('div'),
       slideFigure = document.createElement('figure'),

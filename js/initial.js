@@ -11,6 +11,7 @@ function searchBar(){
   openSearch()
 }
 
+// opens the search bar
 function openSearch(){
   searchField.classList.remove('hide')
   searchField.classList.add('unhide')
@@ -22,6 +23,7 @@ function openSearch(){
   searchClose.addEventListener('click', closeSearch)
 }
 
+// closes the search bar
 function closeSearch(){
   searchField.classList.remove('unhide')
   searchField.classList.add('hide')
@@ -33,6 +35,7 @@ function closeSearch(){
   searchClose.removeEventListener('click', closeSearch)
 }
 
+// fires off a search query
 function searchFormEvent(e){
   e.preventDefault()
   if(searchInput.value){
@@ -46,6 +49,7 @@ imgModal.addEventListener('click', () =>{
   removeModal()
 })
 
+// removes the modal
 function removeModal(){
   bodyElement.className = ''
   imgModal.innerHTML = ''

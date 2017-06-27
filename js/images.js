@@ -1,3 +1,4 @@
+// takes fetched json data from flickr and returns an array with objects.
 function createImgArr(data){
   imgArr = data.photos.photo.map((photo) => {
     imgObj = {
@@ -19,15 +20,19 @@ function createImgArr(data){
   return imgArr
 }
 
+// takes an array of objects and returns a DOM element with images
 function createImgElements(imagesArray){
-  let wrapper = document.createElement('div')
+  let wrapper = document.createElement('div'),
+      imageContainer = ''
   wrapper.id = 'image-wrapper'
   imagesArray.forEach((image) => {
-    createImgEl(image, wrapper)
+    imageContainer = createImgEl(image, wrapper)
+    wrapper.appendChild(imageContainer)
   })
   return wrapper
 }
 
+// takes an array of image objects and returns a dom element with a single image
 function createImgEl(image, wrapper){
   let imageContainer = document.createElement('div'),
       imageOverlay = document.createElement('div'),
@@ -61,9 +66,10 @@ function createImgEl(image, wrapper){
   imageOverlay.appendChild(galleryIcon)
   imageContainer.appendChild(imageOverlay)
   imageContainer.appendChild(img)
-  wrapper.appendChild(imageContainer)
+  return imageContainer
 }
 
+// takes an image object as an argument and toggles a modal with a large image
 function largeImageModal(image){
   let imgModal = document.getElementById('img-modal'),
       bodyElement = document.getElementsByTagName("BODY")[0],
@@ -79,6 +85,7 @@ function largeImageModal(image){
   bodyElement.className = 'modal-open'
 }
 
+// takes an image object as an argument and adds/removes it from the gallery
 function toggleGallery(e, image){
   if (!e) var e = window.event
     e.cancelBubble = true
