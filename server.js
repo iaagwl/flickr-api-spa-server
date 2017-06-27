@@ -1,7 +1,7 @@
 let http = require('http'),
     fs = require('fs'),
-    url = require("url"),
-    path = require("path")
+    url = require('url'),
+    path = require('path')
 
 let server = http.createServer((req, res) => {
   console.log('request was made: ' + req.url)
@@ -13,22 +13,22 @@ let server = http.createServer((req, res) => {
     let uri = url.parse(req.url).pathname,
         filename = path.join(process.cwd(), uri)
 
-    fs.exists(filename, function(exists) {
+    fs.exists(filename, (exists) => {
       if(!exists) {
-        res.writeHead(404, {"Content-Type": "text/plain"})
-        res.write("404 Not Found\n")
+        res.writeHead(404, {'Content-Type': 'text/plain'})
+        res.write('404 Not Found\n')
         res.end()
         return
       }
-      fs.readFile(filename, "binary", function(err, file) {
+      fs.readFile(filename, 'binary', (err, file) => {
         if(err) {
-          res.writeHead(500, {"Content-Type": "text/plain"})
-          res.write(err + "\n")
+          res.writeHead(500, {'Content-Type': 'text/plain'})
+          res.write(err)
           res.end()
           return
         }
         res.writeHead(200)
-        res.write(file, "binary")
+        res.write(file, 'binary')
         res.end()
       })
     })
