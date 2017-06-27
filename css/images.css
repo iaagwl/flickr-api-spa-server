@@ -1,0 +1,156 @@
+#image-wrapper{
+  width: 100%;
+  display: flex;
+  align-content: flex-start;
+  flex-wrap: wrap;
+}
+
+.image-cover{
+  width: 100%;
+  display: flex;
+  align-items: center;
+  height: 450px;
+  overflow: hidden;
+  position: relative;
+}
+
+.image-cover img {
+  display: block;
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  transition: transform 0.4s ease;
+}
+
+.image-overlay{
+  position: absolute;
+  top: 0;
+  left: 0;
+  margin: 0;
+  width: 100%;
+  height: 100%;
+  background: rgba(0, 0, 0, 0.5);
+  background: -webkit-linear-gradient(bottom, rgba(0,0,0,0.8) 0%, rgba(0,0,0,0.55) 25%, rgba(0,0,0,0) 50%);
+  background: -moz-linear-gradient(bottom, rgba(0,0,0,0.8) 0%, rgba(0,0,0,0.55) 25%, rgba(0,0,0,0) 50%);
+  background: linear-gradient(to top, rgba(0,0,0,0.8) 0%, rgba(0,0,0,0.55) 25%, rgba(0,0,0,0) 50%);
+  opacity: 1;
+  transition: opacity 0.2s ease;
+  z-index: 2;
+  display: flex;
+  align-items: flex-end;
+  cursor: pointer;
+
+  -webkit-user-select: none;
+  -moz-user-select: none;
+  -khtml-user-select: none;
+  -ms-user-select: none;
+  user-select: none;
+}
+
+.image-overlay:hover{
+  opacity: 1;
+  transition: opacity 0.3s ease;
+}
+
+.image-overlay:hover + img{
+  transform: scale(1.1);
+}
+
+.image-overlay span{
+  display: block;
+  overflow: hidden;
+  width: 60%;
+  text-align: center;
+  color: #fff;
+  margin: 0 auto 5px;
+}
+
+.image-overlay i.font-icon{
+  position: absolute;
+  color: #fff;
+  font-size: 34px;
+  right: 10px;
+  bottom: 10px;
+  cursor: pointer;
+  opacity: 0.8;
+}
+
+.image-overlay i.success:hover{
+  color: #ff7a7a;
+}
+
+.image-overlay i.font-icon:hover{
+  opacity: 1;
+  transition: opacity 0.1s ease;
+}
+
+#img-modal{
+  background-color: rgba(0, 0, 0, 0.8);
+  position: fixed;
+  top: 44px;
+  left: 0;
+  width: 100vw;
+  height: 100vh;
+  z-index: 3;
+  align-items: center;
+  align-content: center;
+  justify-content: center;
+  -webkit-user-select: none; /* webkit (safari, chrome) browsers */
+  -moz-user-select: none; /* mozilla browsers */
+  -khtml-user-select: none; /* webkit (konqueror) browsers */
+  -ms-user-select: none; /* IE10+ */
+  user-select: none;
+}
+
+#img-modal img{
+  display: block;
+  max-height: 80%;
+  max-width: 100%;
+  margin-bottom: 44px;
+  box-shadow: 0 0 5px rgba(0, 0, 0, 0.4);
+}
+
+.display-modal{
+  display: flex;
+}
+
+.hide-modal{
+  display: none;
+}
+
+body.modal-open{
+  overflow: hidden;
+}
+
+
+@media screen and (min-width: 600px) {
+  .image-cover{
+    width: 50%;
+  }
+}
+@media screen and (min-width: 960px) {
+  .image-cover{
+    width: 33.33%;
+  }
+}
+@media screen and (min-width: 1280px){
+  .image-cover{
+    width: 25%;
+  }
+  #img-modal img{
+    max-width: 80%;
+  }
+  .image-overlay{
+    opacity: 0;
+  }
+}
+@media screen and (min-width: 1600px) {
+  .image-cover{
+    width: 20%;
+  }
+}
+@media screen and (min-width: 3200px) {
+  .image-cover{
+    width: 16.66%;
+  }
+}

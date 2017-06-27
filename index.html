@@ -1,0 +1,53 @@
+<!doctype html>
+<html class="no-js" lang="">
+    <head>
+        <meta charset="utf-8">
+        <meta http-equiv="x-ua-compatible" content="ie=edge">
+        <title>Flickr Api</title>
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+
+        <link href="https://fonts.googleapis.com/css?family=Karla" rel="stylesheet">
+        <link href="https://fonts.googleapis.com/css?family=Lato:300" rel="stylesheet">
+        <link rel='stylesheet' href='fonts/pe-icon-7-stroke/css/peicon7stroke.css'/>
+        <link rel="stylesheet" href="./css/styles.css">
+        <link rel="stylesheet" href="./css/images.css">
+        <link rel="stylesheet" href="./css/slider.css">
+
+    </head>
+    <body>
+        <nav>
+          <div id="nav-content">
+            <a onclick="homeNav()"><span class="pe-7s-helm font-icon"></span></a>
+            <div id="left-menu">
+              <a id="gallery-nav" onclick="galleryPreNav()"><span>Gallery</span></a>
+              <a id="popular-nav" onclick="popularNav()"><span>Popular</span></a>
+              <a id="recent-nav" onclick="recentNav()"><span>Recent</span></a>
+            </div>
+            <div id="right-menu">
+              <a onclick="searchBar()" id="search-icon"><span class="pe-7s-search font-icon"></span></a>
+            </div>
+            <div id="search-field" class="hide">
+              <i class="pe-7s-search font-icon"></i>
+              <form id="search-form">
+                <input id="search-input" type="search"
+                autocorrect="off" spellcheck="false" autocomplete="off"
+                placeholder="Search Flickr.com">
+              </form>
+              <i id="search-close" class="pe-7s-close font-icon"></i>
+            </div>
+          </div>
+        </nav>
+
+        <div id="content"></div>
+        <div id="img-modal" class="hide-modal"></div>
+
+        <script src="./js/data.js"></script>
+        <script src="./js/images.js"></script>
+        <script src="./js/initial.js"></script>
+        <script src="./js/slider.js"></script>
+        <script src="./js/createSlider.js"></script>
+        <script src="./js/navigation.js"></script>
+        <script src="./js/router.js"></script>
+
+    </body>
+</html>

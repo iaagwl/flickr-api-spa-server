@@ -1,0 +1,148 @@
+*{
+  font-family: "Karla", "Helvetica", sans-serif;
+}
+
+body{
+  background-color: #f2f2f2;
+  margin: 0;
+}
+
+/* NAV */
+nav{
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  background-color: rgba(0, 0, 0, 0.8);
+  height: 44px;
+  z-index: 5;
+}
+
+#nav-content{
+  max-width: 980px;
+  margin: 0 auto;
+  height: 100%;
+  display: flex;
+  justify-content: space-between;
+  position: relative;
+}
+
+#nav-content a{
+  cursor: pointer;
+  font-weight: 400;
+  font-size: 15px;
+  height: 100%;
+  color: #fff;
+  text-decoration: none;
+  opacity: 1;
+  transition: opacity 0.2s cubic-bezier(0.645, 0.045, 0.355, 1);
+  display: flex;
+  justify-content: center;
+  align-content: flex-end;
+  flex-direction: column;
+  padding: 0 10px;
+}
+
+#nav-content a.active{
+  opacity: 0.6;
+
+}
+
+#nav-content a:hover{
+  opacity: 0.6;
+  transition: opacity 0.2s cubic-bezier(0.645, 0.045, 0.355, 1);
+}
+
+#left-menu{
+  height: 100%;
+  display: flex;
+  justify-content: space-between;
+  width: 60%;
+  transition: opacity 0.3s ease-in;
+}
+
+#right-menu{
+  height: 100%;
+  text-align: right;
+}
+
+.font-icon{
+  font-size: 20px;
+}
+
+#content{
+  padding-top: 44px;
+}
+
+/* SEARCH */
+#search-field{
+  opacity: 0;
+  position: absolute;
+  height: 100%;
+  width: 75%;
+  top: 0;
+  left: 50%;
+  display: flex;
+  align-items: center;
+}
+
+#search-field form{
+  height: 100%;
+  width: 95%;
+  display: inline-block;
+}
+
+#search-field input{
+  font-size: 18px;
+  color: #fff;
+  height: 100%;
+  width: 100%;
+  background: transparent;
+  box-sizing: border-box;
+  border: 0;
+  outline: 0;
+}
+
+#search-field input::placeholder{
+  color: rgba(255,255,255,0.6);
+}
+
+#search-field i{
+  color: #fff;
+  width: 5%;
+  min-width: 35px;
+}
+
+#search-field i:last-of-type{
+  font-size: 30px;
+  cursor: pointer;
+}
+
+@media screen and (min-width: 480px) {
+  #search-field input::-webkit-search-cancel-button{
+    display: none;
+  }
+}
+
+/* ANIMATIONS */
+.hide{
+  opacity: 0 !important;
+  transition: opacity 0.3s ease-out;
+  z-index: -1;
+}
+
+.unhide{
+  z-index: 1;
+  animation: searchAnimation 0.6s cubic-bezier(0.14 , 0.65, 0.15, 0.98) 0.2s forwards;
+}
+
+@keyframes searchAnimation{
+    0% {
+      opacity: 0;
+      left: 50%;
+    }
+    100% {
+      opacity: 1;
+      left: 25%;
+    }
+}
