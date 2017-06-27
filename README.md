@@ -6,7 +6,6 @@ Here are some ways to run the application locally on port 3000:
 1. with node and the supplied server, run:
 ```
 node server.js
-
 ```
 
 2. with python 2.7, run:
