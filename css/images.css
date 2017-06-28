@@ -122,6 +122,19 @@ body.modal-open{
   overflow: hidden;
 }
 
+#empty-wrapper{
+  width: 100%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+#empty-wrapper h1{
+  color: rgba(0, 0, 0, 0.7);
+  text-align: center;
+  font-size: 2em;
+  padding: 0 20px;
+}
 
 @media screen and (min-width: 600px) {
   .image-cover{
@@ -142,6 +155,9 @@ body.modal-open{
   }
   .image-overlay{
     opacity: 0;
+  }
+  #empty-wrapper h1{
+    font-size: 3em;
   }
 }
 @media screen and (min-width: 1600px) {

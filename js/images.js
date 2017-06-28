@@ -1,4 +1,4 @@
-// takes fetched json data from flickr and returns an array with objects.
+// takes fetched json data from flickr as an argument and returns an array with objects.
 function createImgArr(data){
   imgArr = data.photos.photo.map((photo) => {
     imgObj = {

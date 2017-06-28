@@ -6,7 +6,7 @@ let http = require('http'),
 let server = http.createServer((req, res) => {
   console.log('request was made: ' + req.url)
   if (req.url === '/' || req.url === '/home' || req.url === '/gallery' ||
-    req.url === '/popular' || req.url === '/recent' || req.url === '/search'){
+      req.url === '/popular' || req.url === '/recent' || req.url === '/search'){
     res.writeHead(200, {'Content-Type': 'text/html'})
     fs.createReadStream(__dirname + '/index.html').pipe(res)
   } else {

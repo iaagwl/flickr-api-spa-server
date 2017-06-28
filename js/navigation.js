@@ -1,6 +1,7 @@
 let galleryNavEl = document.getElementById('gallery-nav'),
     popularNavEl = document.getElementById('popular-nav'),
-    recentNavEl = document.getElementById('recent-nav')
+    recentNavEl = document.getElementById('recent-nav'),
+    contentDiv = document.getElementById('content')
 
 // navigates to the home-page
 function homeNav(){
@@ -19,8 +20,15 @@ function galleryPreNav(){
 
 // navigates to the gallery-page
 function galleryNav(){
-  let galleryElement = createImgElements(galleryArr)
-  removeModal()
+  contentDiv.classList.add('loading')
+  let galleryElement;
+  if(galleryArr.length > 0){
+    galleryElement = createImgElements(galleryArr)
+    removeModal()
+  } else {
+    galleryElement = emptyGallery()
+  }
+  contentDiv.classList.remove('loading')
   gallery(galleryElement)
 }
 
@@ -31,10 +39,12 @@ function popularNav(){
                       '&per_page=30&format=json&nojsoncallback=1'+
                       '&api_key='+API_KEY
 
+  contentDiv.classList.add('loading')
   fetchData(popularURL)
   .then(data => createImgArr(data))
   .then(imagesArray => createImgElements(imagesArray))
   .then(DOMContent => {
+    contentDiv.classList.remove('loading')
     removeModal()
     popular(DOMContent)
     window.scrollTo(0, 0)
@@ -49,12 +59,14 @@ function recentNav(){
                     '&format=json&nojsoncallback=1'+
                     '&api_key='+API_KEY
 
+  contentDiv.classList.add('loading')
   fetchData(recentURL)
   .then(data => createImgArr(data))
   .then(imagesArray => createImgElements(imagesArray))
   .then(DOMContent => {
     removeModal()
     recent(DOMContent)
+    contentDiv.classList.remove('loading')
     window.scrollTo(0, 0)
   })
   .catch(err => console.log(err) /* Handle error */)
@@ -68,12 +80,13 @@ function searchNav(input){
                   '&sort=interestingness-desc&per_page=30'+
                   '&api_key='+API_KEY+'&tags='
 
-
+  contentDiv.classList.add('loading')
   searchURL += input.replace(/\ /g, '+')
   fetchData(searchURL)
   .then(data => createImgArr(data))
   .then(imagesArray => createImgElements(imagesArray))
   .then(DOMContent => {
+    contentDiv.classList.remove('loading')
     removeModal()
     searchResult(DOMContent)
     window.scrollTo(0, 0)
@@ -95,4 +108,16 @@ function activeNav(){
   if(location.pathname.startsWith('/recent')){
     recentNavEl.className = 'active'
   }
+}
+
+// handles empty gallery
+function emptyGallery(){
+  let emptyWrapper = document.createElement('div'),
+      emptyHeader = document.createElement('h1')
+
+  emptyWrapper.id = 'empty-wrapper',
+  emptyHeader.id = 'empty-header'
+  emptyHeader.textContent = 'Your gallery is currently empty :('
+  emptyWrapper.appendChild(emptyHeader)
+  return emptyWrapper
 }
