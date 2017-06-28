@@ -21,13 +21,10 @@ function galleryPreNav(){
 // navigates to the gallery-page
 function galleryNav(){
   contentDiv.classList.add('loading')
-  let galleryElement;
-  if(galleryArr.length > 0){
-    galleryElement = createImgElements(galleryArr)
-    removeModal()
-  } else {
-    galleryElement = emptyGallery()
-  }
+  let galleryElement = (galleryArr.length > 0) ?
+                        createImgElements(galleryArr) :
+                        emptyMessage('Your gallery is currently empty :(')
+
   contentDiv.classList.remove('loading')
   gallery(galleryElement)
 }
@@ -84,7 +81,11 @@ function searchNav(input){
   searchURL += input.replace(/\ /g, '+')
   fetchData(searchURL)
   .then(data => createImgArr(data))
-  .then(imagesArray => createImgElements(imagesArray))
+  .then(imagesArray => {
+    return  (imagesArray.length > 0) ?
+      createImgElements(imagesArray) :
+      emptyMessage('Could not find any matching results :(')
+  })
   .then(DOMContent => {
     contentDiv.classList.remove('loading')
     removeModal()
@@ -110,14 +111,15 @@ function activeNav(){
   }
 }
 
-// handles empty gallery
-function emptyGallery(){
+// handles empty gallery, takes a string as an argument and returns an
+// element with that message
+function emptyMessage(message){
   let emptyWrapper = document.createElement('div'),
       emptyHeader = document.createElement('h1')
 
   emptyWrapper.id = 'empty-wrapper',
   emptyHeader.id = 'empty-header'
-  emptyHeader.textContent = 'Your gallery is currently empty :('
+  emptyHeader.textContent = message
   emptyWrapper.appendChild(emptyHeader)
   return emptyWrapper
 }
