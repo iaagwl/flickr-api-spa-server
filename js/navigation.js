@@ -64,9 +64,9 @@ function recentNav(){
   .then(data => createImgArr(data))
   .then(imagesArray => createImgElements(imagesArray))
   .then(DOMContent => {
+    contentDiv.classList.remove('loading')
     removeModal()
     recent(DOMContent)
-    contentDiv.classList.remove('loading')
     window.scrollTo(0, 0)
   })
   .catch(err => console.log(err) /* Handle error */)
