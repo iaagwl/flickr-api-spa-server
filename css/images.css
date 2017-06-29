@@ -90,15 +90,15 @@
   top: 44px;
   left: 0;
   width: 100vw;
-  height: 100vh;
+  height: 100%;
   z-index: 2;
   align-items: center;
   align-content: center;
   justify-content: center;
-  -webkit-user-select: none; /* webkit (safari, chrome) browsers */
-  -moz-user-select: none; /* mozilla browsers */
-  -khtml-user-select: none; /* webkit (konqueror) browsers */
-  -ms-user-select: none; /* IE10+ */
+  -webkit-user-select: none;
+  -moz-user-select: none;
+  -khtml-user-select: none;
+  -ms-user-select: none;
   user-select: none;
 }
 
@@ -120,6 +120,7 @@
 
 body.modal-open{
   overflow: hidden;
+  position: fixed;
 }
 
 #empty-wrapper{
