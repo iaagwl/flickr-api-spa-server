@@ -6,10 +6,26 @@ let galleryArr = [],
 
 const API_KEY = '4ca5d32fc4f8ce65c4b6e3fd1089c50c'
 
-// takes an url as an argument and fetches an returns jsondata from that url
-function fetchData(tagURL){
-  if(tagURL){
-    return fetch(tagURL)
-    .then(res => res.json())
-  }
+// takes an object with url and method properties as an argument
+// and fetches an returns jsondata as a promise from that url
+function makeRequest (opts) {
+  return new Promise(function (resolve, reject) {
+    let xhr = new XMLHttpRequest()
+    xhr.open(opts.method, opts.url)
+    xhr.onload = function() {
+      if (this.status >= 200 && this.status < 300) {
+        resolve(JSON.parse(xhr.response))
+      } else {
+        reject({ status: this.status, statusText: xhr.statusText })
+      }
+    }
+    xhr.onerror = function () {
+      reject({
+        status: this.status,
+        statusText: xhr.statusText
+      })
+    }
+    let params = opts.params
+    xhr.send(params)
+  })
 }

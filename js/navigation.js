@@ -38,7 +38,7 @@ function popularNav(){
                       '&api_key='+API_KEY
 
   contentDiv.classList.add('loading')
-  fetchData(popularURL)
+  makeRequest({method: 'GET', url: popularURL})
   .then(data => createImgArr(data))
   .then(imagesArray => createImgElements(imagesArray))
   .then(DOMContent => {
@@ -48,6 +48,7 @@ function popularNav(){
     window.scrollTo(0, 0)
   })
   .catch(err => console.log(err) /* Handle error */)
+
 }
 
 // navigates to the recent-page
@@ -58,7 +59,7 @@ function recentNav(){
                     '&api_key='+API_KEY
 
   contentDiv.classList.add('loading')
-  fetchData(recentURL)
+  makeRequest({method: 'GET', url: recentURL})
   .then(data => createImgArr(data))
   .then(imagesArray => createImgElements(imagesArray))
   .then(DOMContent => {
@@ -80,7 +81,7 @@ function searchNav(input){
 
   contentDiv.classList.add('loading')
   searchURL += input.replace(/\ /g, '+')
-  fetchData(searchURL)
+  makeRequest({method: 'GET', url: searchURL})
   .then(data => createImgArr(data))
   .then(imagesArray => {
     return  (imagesArray.length > 0) ?
