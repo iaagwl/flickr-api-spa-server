@@ -18,11 +18,13 @@ function createSlider(){
 
   featuredImages.forEach((image, i) => {
     let = slideDiv = document.createElement('div'),
+    slideDiv.className = 'slide img-loading'
     dash = document.createElement('div'),
     img = new Image()
+    removeImgLoading(img, slideDiv)
+
     img.src = image
     img.id = 'item-'+i.toString()
-    slideDiv.className = 'slide'
     slideDiv.appendChild(img)
     slideFigure.appendChild(slideDiv)
     dash.id = 'dash-'+i.toString()

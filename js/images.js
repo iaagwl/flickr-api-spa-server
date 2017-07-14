@@ -33,15 +33,18 @@ function createImgElements(imagesArray){
 }
 
 // takes an array of image objects and returns a dom element with a single image
-function createImgEl(image, wrapper){
+function createImgEl(image){
   let imageContainer = document.createElement('div'),
       imageOverlay = document.createElement('div'),
       titleSpan = document.createElement('span'),
       galleryIcon = document.createElement('i'),
       img = new Image()
 
+  imageContainer.className = 'img-loading image-cover'
+  removeImgLoading(img, imageContainer)
+
   img.src = image.medium
-  imageContainer.className = 'image-cover'
+  // imageContainer.className = 'image-cover'
   imageOverlay.className = 'image-overlay'
   titleSpan.textContent = image.title
   galleryIcon.className = 'pe-7s-photo-gallery font-icon'
@@ -104,5 +107,14 @@ function toggleGallery(e, image){
     }
     e.target.className = 'pe-7s-photo-gallery font-icon'
     image.addedToGallery = false
+  }
+}
+
+// takes an img element and an element and removes the img-loading class 
+// from the element when when the image is done loading.
+
+function removeImgLoading(img, el){
+  img.onload = function () {
+    el.classList.remove('img-loading')
   }
 }
